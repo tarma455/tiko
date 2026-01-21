@@ -1,154 +1,156 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>TIKO | Conexión Peluda</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>TIKO | Cartilla Digital</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: linear-gradient(135deg, #4CAF50, #81D4FA);
-      color: #333;
-    }
-
-    .screen {
-      display: none;
-      max-width: 700px;
-      margin: auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 20px;
-      margin-top: 40px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    }
-
-    .screen.active {
-      display: block;
-    }
-
-    h1, h2 {
-      text-align: center;
-      color: #2E7D32;
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 15px;
-      border: none;
-      border-radius: 10px;
-      background: #4CAF50;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    button.secondary {
-      background: #81D4FA;
-      color: #333;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-
-    .table input {
-      margin-bottom: 10px;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 30px;
-      color: #fff;
-      font-size: 14px;
-    }
-  </style>
+<style>
+body{
+  margin:0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg,#4CAF50,#81D4FA);
+}
+.screen{
+  display:none;
+  max-width:900px;
+  margin:40px auto;
+  background:#fff;
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 8px 25px rgba(0,0,0,.15);
+}
+.screen.active{display:block;}
+h1,h2,h3{color:#2E7D32;text-align:center;}
+button{
+  width:100%;
+  padding:12px;
+  margin-top:15px;
+  border:none;
+  border-radius:10px;
+  background:#4CAF50;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+button.secondary{background:#81D4FA;color:#333;}
+input,select{
+  width:100%;
+  padding:10px;
+  margin-top:8px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:15px;
+}
+table,th,td{
+  border:1px solid #ccc;
+}
+th,td{
+  padding:8px;
+  text-align:center;
+}
+footer{
+  text-align:center;
+  color:#fff;
+  margin-bottom:20px;
+}
+</style>
 </head>
 
 <body>
 
-<!-- PANTALLA 1: BIENVENIDA -->
+<!-- BIENVENIDA -->
 <div class="screen active" id="welcome">
   <h1>BIENVENIDO A TIKO</h1>
   <p style="text-align:center;">“Conexión Peluda”</p>
-
-  <button onclick="goTo('selectUser')">Continuar</button>
+  <button onclick="goTo('owner')">Continuar</button>
 </div>
 
-<!-- PANTALLA 2: TIPO DE USUARIO -->
-<div class="screen" id="selectUser">
-  <h2>¿Quién eres?</h2>
-
-  <button onclick="goTo('registerOwner')">Soy nuevo usuario (dueño)</button>
-  <button class="secondary" onclick="goTo('contactOwner')">Encontré una mascota</button>
-</div>
-
-<!-- PANTALLA 3: REGISTRO DE DUEÑO -->
-<div class="screen" id="registerOwner">
+<!-- REGISTRO DUEÑO -->
+<div class="screen" id="owner">
   <h2>Registro de Dueño</h2>
-
-  <input type="text" placeholder="Nombre completo">
+  <input placeholder="Nombre completo">
   <input type="password" placeholder="Contraseña">
-
-  <button onclick="goTo('petData')">Continuar</button>
+  <button onclick="goTo('pet')">Continuar</button>
 </div>
 
-<!-- PANTALLA 4: DATOS DE LA MASCOTA -->
-<div class="screen" id="petData">
+<!-- DATOS MASCOTA -->
+<div class="screen" id="pet">
   <h2>Datos de la Mascota</h2>
-
-  <input type="text" placeholder="Nombre de la mascota">
-  <input type="number" placeholder="Edad (años)">
-  <input type="text" placeholder="Peso (kg)">
-
-  <h3>Información médica</h3>
-
-  <div class="table">
-    <input type="text" placeholder="Padecimientos">
-    <input type="text" placeholder="Alergias">
-    <input type="text" placeholder="Vacunas">
-  </div>
-
-  <button onclick="goTo('finish')">Guardar información</button>
+  <input placeholder="Nombre de la mascota">
+  <input placeholder="Edad">
+  <input placeholder="Peso (kg)">
+  <button onclick="goTo('vaccines')">Siguiente</button>
 </div>
 
-<!-- PANTALLA 5: FINAL -->
-<div class="screen" id="finish">
-  <h2>Registro completado</h2>
-  <p>
-    Este QR ahora representa a <strong>tu mascota</strong>.  
-    Cuando alguien lo escanee, podrá contactarte y ver
-    información importante para ayudarla.
-  </p>
+<!-- VACUNAS -->
+<div class="screen" id="vaccines">
+  <h2>Cartilla de Vacunación</h2>
+
+  <select id="vaccine">
+    <option value="">Selecciona vacuna</option>
+    <option>Rabia</option>
+    <option>Parvovirus</option>
+    <option>Moquillo</option>
+    <option>Hepatitis</option>
+    <option>Leptospirosis</option>
+  </select>
+
+  <input type="date" id="date">
+  <select id="dose">
+    <option>Primera dosis</option>
+    <option>Segunda dosis</option>
+    <option>Refuerzo</option>
+  </select>
+
+  <button onclick="addVaccine()">Agregar vacuna</button>
+  <button class="secondary" onclick="goTo('summary')">Ver cartilla</button>
 </div>
 
-<!-- PANTALLA 6: PERSONA QUE ENCUENTRA LA MASCOTA -->
-<div class="screen" id="contactOwner">
-  <h2>🐾 Mascota encontrada</h2>
+<!-- RESUMEN -->
+<div class="screen" id="summary">
+  <h2>Cartilla Digital</h2>
 
-  <p><strong>Nombre:</strong> Rocky</p>
-  <p><strong>Dueño:</strong> Guillermo</p>
-  <p><strong>Teléfono:</strong> 55 1234 5678</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Vacuna</th>
+        <th>Fecha</th>
+        <th>Dosis</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
 
-  <button>Llamar al dueño</button>
+  <button onclick="download()">Descargar cartilla digital</button>
 </div>
 
-<footer>
-  🐶 TIKO — Tecnología con corazón para mascotas
-</footer>
+<footer>🐾 TIKO — Tecnología con corazón para mascotas</footer>
 
 <script>
-  function goTo(id) {
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-  }
+function goTo(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function addVaccine(){
+  const v=document.getElementById('vaccine').value;
+  const d=document.getElementById('date').value;
+  const dose=document.getElementById('dose').value;
+  if(!v||!d){alert('Completa todos los campos');return;}
+  document.getElementById('tableBody').innerHTML+=
+  `<tr><td>${v}</td><td>${d}</td><td>${dose}</td></tr>`;
+}
+
+function download(){
+  alert("En la versión final aquí se descargará un PDF con la cartilla.");
+}
 </script>
 
 </body>
 </html>
+
