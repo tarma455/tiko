@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>TIKO | Prueba Piloto 4.1</title>
+<title>TIKO | Prueba Piloto 4.2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -29,9 +29,10 @@ h1,h2{
   margin-bottom:25px;
 }
 .section{
-  margin-top:30px;
-  padding-top:20px;
-  border-top:1px solid #ddd;
+  display:none;
+}
+.section.active{
+  display:block;
 }
 .notice{
   background:#eef5ff;
@@ -97,106 +98,131 @@ th{
 
 <div class="container">
 
-<h1>BIENVENIDO A TIKO</h1>
-<p class="subtitle">"Conexión Peluda"</p>
+<!-- BLOQUE 1: BIENVENIDA -->
+<div class="section active" id="step1">
+  <h1>BIENVENIDO A TIKO</h1>
+  <p class="subtitle">"Conexión Peluda"</p>
 
-<!-- MISIÓN Y VISIÓN -->
-<div class="section">
-<h2>Misión</h2>
-<p>
-Facilitar la identificación y protección de las mascotas mediante tecnología QR,
-permitiendo acceso rápido a información esencial para su cuidado y localización.
-</p>
+  <div class="notice">
+    TIKO permite identificar y proteger a tu mascota mediante una cartilla digital
+    accesible desde un código QR.
+  </div>
 
-<h2>Visión</h2>
-<p>
-Ser una herramienta confiable que reduzca la pérdida de mascotas y mejore la atención
-veterinaria a través de una cartilla digital clara y accesible.
-</p>
+  <button onclick="nextStep(2)">Continuar</button>
 </div>
 
-<!-- DATOS DE LA MASCOTA -->
-<div class="section">
-<h2>Datos de la mascota</h2>
+<!-- BLOQUE 2: USUARIO -->
+<div class="section" id="step2">
+  <h2>Registro del dueño</h2>
 
-<div class="notice">
-✔️ Usa solo letras en el nombre.<br>
-✔️ Peso en kilogramos.<br>
-✔️ Edad en años cumplidos.
+  <div class="notice">
+    ✔️ Usa tu nombre completo.<br>
+    ✔️ No incluyas números ni signos.<br>
+    ✔️ Esta información permitirá contactarte.
+  </div>
+
+  <div class="checkbox">
+    <input type="checkbox"> Leí y entendí la instrucción
+  </div>
+
+  <label>Nombre completo</label>
+  <input type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" placeholder="Ejemplo: Juan Pérez López">
+
+  <label>Contraseña</label>
+  <input type="password">
+
+  <button onclick="nextStep(3)">Continuar</button>
 </div>
 
-<div class="checkbox">
-<input type="checkbox"> Confirmo que leí y entendí las indicaciones
+<!-- BLOQUE 3: MASCOTA -->
+<div class="section" id="step3">
+  <h2>Datos de la mascota</h2>
+
+  <div class="notice">
+    ✔️ Nombre solo con letras.<br>
+    ✔️ Peso en kilogramos.<br>
+    ✔️ Edad en años.
+  </div>
+
+  <div class="checkbox">
+    <input type="checkbox"> Confirmo que los datos son correctos
+  </div>
+
+  <label>Nombre de la mascota</label>
+  <input type="text" placeholder="Ejemplo: Luna">
+
+  <label>Peso (kg)</label>
+  <input type="number">
+
+  <label>Edad (años)</label>
+  <input type="number">
+
+  <button onclick="nextStep(4)">Continuar</button>
 </div>
 
-<label>Nombre de la mascota</label>
-<input type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" placeholder="Ejemplo: Rocky">
+<!-- BLOQUE 4: VACUNAS -->
+<div class="section" id="step4">
+  <h2>Registro de vacunas</h2>
 
-<label>Peso (kg)</label>
-<input type="number">
+  <div class="notice">
+    Cada vacuna agregada aparecerá automáticamente en la cartilla digital.
+  </div>
 
-<label>Edad (años)</label>
-<input type="number">
-</div>
+  <div class="checkbox">
+    <input type="checkbox"> Leí cómo registrar correctamente una vacuna
+  </div>
 
-<!-- VACUNAS -->
-<div class="section">
-<h2>Registro de vacunas</h2>
+  <label>Vacuna</label>
+  <select id="vacuna">
+    <option>Antirrábica</option>
+    <option>Parvovirus</option>
+    <option>Moquillo</option>
+    <option>Hepatitis</option>
+    <option>Leptospirosis</option>
+  </select>
 
-<div class="notice">
-Cada vacuna agregada se incorporará automáticamente a la cartilla digital.
-</div>
+  <label>Fecha de aplicación</label>
+  <input type="date" id="fecha">
 
-<div class="checkbox">
-<input type="checkbox"> Leí cómo agregar correctamente una vacuna
-</div>
+  <label>¿Tiene más de una dosis?</label>
+  <select id="dosis">
+    <option>No</option>
+    <option>Sí</option>
+  </select>
 
-<label>Vacuna</label>
-<select id="vacuna">
-  <option>Antirrábica</option>
-  <option>Parvovirus</option>
-  <option>Moquillo</option>
-  <option>Hepatitis</option>
-  <option>Leptospirosis</option>
-</select>
+  <button onclick="agregarVacuna()">Agregar vacuna</button>
 
-<label>Fecha de aplicación</label>
-<input type="date" id="fecha">
+  <!-- CARTILLA -->
+  <div id="cartilla" class="hidden">
+    <h3>Cartilla digital (vista previa)</h3>
 
-<label>¿Tiene más de una dosis?</label>
-<select id="dosis">
-  <option>No</option>
-  <option>Sí</option>
-</select>
+    <table id="tablaVacunas">
+      <thead>
+        <tr>
+          <th>Vacuna</th>
+          <th>Fecha</th>
+          <th>Dosis múltiple</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
 
-<button onclick="agregarVacuna()">Agregar vacuna</button>
-
-<!-- CARTILLA DIGITAL -->
-<div id="cartilla" class="hidden">
-<h3>Cartilla digital (vista previa)</h3>
-
-<table id="tablaVacunas">
-<thead>
-<tr>
-<th>Vacuna</th>
-<th>Fecha</th>
-<th>Dosis múltiple</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
-
-<button style="margin-top:15px;">Descargar cartilla digital</button>
-</div>
+    <button style="margin-top:15px;">Descargar cartilla digital</button>
+  </div>
 </div>
 
 <div class="footer">
-TIKO · Prueba Piloto 4.1 · Cartilla demostrativa
+TIKO · Prueba Piloto 4.2 · Flujo por bloques
 </div>
 
 </div>
 
 <script>
+function nextStep(step){
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('step' + step).classList.add('active');
+}
+
 function agregarVacuna(){
   const vacuna = document.getElementById("vacuna").value;
   const fecha = document.getElementById("fecha").value;
