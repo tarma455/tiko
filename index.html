@@ -2,13 +2,13 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>TIKO | Prueba Piloto 4.0</title>
+<title>TIKO | Prueba Piloto 4.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{
   font-family: Arial, sans-serif;
-  background: #f2f6ff;
+  background:#eef3ff;
   margin:0;
 }
 .container{
@@ -87,6 +87,9 @@ th{
   margin-top:30px;
   color:#777;
 }
+.hidden{
+  display:none;
+}
 </style>
 </head>
 
@@ -97,22 +100,37 @@ th{
 <h1>BIENVENIDO A TIKO</h1>
 <p class="subtitle">"Conexión Peluda"</p>
 
+<!-- MISIÓN Y VISIÓN -->
+<div class="section">
+<h2>Misión</h2>
+<p>
+Facilitar la identificación y protección de las mascotas mediante tecnología QR,
+permitiendo acceso rápido a información esencial para su cuidado y localización.
+</p>
+
+<h2>Visión</h2>
+<p>
+Ser una herramienta confiable que reduzca la pérdida de mascotas y mejore la atención
+veterinaria a través de una cartilla digital clara y accesible.
+</p>
+</div>
+
 <!-- DATOS DE LA MASCOTA -->
 <div class="section">
 <h2>Datos de la mascota</h2>
 
 <div class="notice">
-✔️ Usa solo letras para el nombre.<br>
-✔️ El peso debe ir en kilogramos.<br>
-✔️ La edad se expresa en años.
+✔️ Usa solo letras en el nombre.<br>
+✔️ Peso en kilogramos.<br>
+✔️ Edad en años cumplidos.
 </div>
 
 <div class="checkbox">
-<input type="checkbox"> Confirmo que los datos son correctos
+<input type="checkbox"> Confirmo que leí y entendí las indicaciones
 </div>
 
 <label>Nombre de la mascota</label>
-<input type="text" placeholder="Ejemplo: Luna">
+<input type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" placeholder="Ejemplo: Rocky">
 
 <label>Peso (kg)</label>
 <input type="number">
@@ -123,15 +141,14 @@ th{
 
 <!-- VACUNAS -->
 <div class="section">
-<h2>Agregar vacuna</h2>
+<h2>Registro de vacunas</h2>
 
 <div class="notice">
-Selecciona la vacuna aplicada y registra la información básica.
-Cada vacuna agregada aparecerá en la cartilla digital.
+Cada vacuna agregada se incorporará automáticamente a la cartilla digital.
 </div>
 
 <div class="checkbox">
-<input type="checkbox"> Leí con atención cómo registrar una vacuna
+<input type="checkbox"> Leí cómo agregar correctamente una vacuna
 </div>
 
 <label>Vacuna</label>
@@ -146,7 +163,7 @@ Cada vacuna agregada aparecerá en la cartilla digital.
 <label>Fecha de aplicación</label>
 <input type="date" id="fecha">
 
-<label>¿Requiere más de una dosis?</label>
+<label>¿Tiene más de una dosis?</label>
 <select id="dosis">
   <option>No</option>
   <option>Sí</option>
@@ -154,7 +171,10 @@ Cada vacuna agregada aparecerá en la cartilla digital.
 
 <button onclick="agregarVacuna()">Agregar vacuna</button>
 
-<!-- TABLA -->
+<!-- CARTILLA DIGITAL -->
+<div id="cartilla" class="hidden">
+<h3>Cartilla digital (vista previa)</h3>
+
 <table id="tablaVacunas">
 <thead>
 <tr>
@@ -163,15 +183,15 @@ Cada vacuna agregada aparecerá en la cartilla digital.
 <th>Dosis múltiple</th>
 </tr>
 </thead>
-<tbody>
-</tbody>
+<tbody></tbody>
 </table>
 
 <button style="margin-top:15px;">Descargar cartilla digital</button>
 </div>
+</div>
 
 <div class="footer">
-TIKO · Prueba Piloto 4.0 · Datos demostrativos
+TIKO · Prueba Piloto 4.1 · Cartilla demostrativa
 </div>
 
 </div>
@@ -183,9 +203,11 @@ function agregarVacuna(){
   const dosis = document.getElementById("dosis").value;
 
   if(fecha === ""){
-    alert("Por favor selecciona la fecha de aplicación");
+    alert("Selecciona la fecha de aplicación");
     return;
   }
+
+  document.getElementById("cartilla").classList.remove("hidden");
 
   const tabla = document.getElementById("tablaVacunas").querySelector("tbody");
   const fila = tabla.insertRow();
@@ -193,6 +215,8 @@ function agregarVacuna(){
   fila.insertCell(0).innerText = vacuna;
   fila.insertCell(1).innerText = fecha;
   fila.insertCell(2).innerText = dosis;
+
+  document.getElementById("fecha").value = "";
 }
 </script>
 
