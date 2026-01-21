@@ -1,247 +1,200 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>TIKO | Conexión Peluda</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>TIKO | Prueba Piloto 4.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #00c6ff, #0072ff);
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: auto;
-      background: #fff;
-      padding: 25px;
-      border-radius: 16px;
-      margin-top: 30px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    }
-
-    h1, h2, h3 {
-      text-align: center;
-      color: #0072ff;
-    }
-
-    .subtitle {
-      text-align: center;
-      font-style: italic;
-      margin-bottom: 20px;
-    }
-
-    .section {
-      margin-top: 30px;
-      padding-top: 20px;
-      border-top: 2px dashed #ddd;
-    }
-
-    label {
-      font-weight: bold;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0 15px 0;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-
-    .notice {
-      background: #e8f4ff;
-      padding: 15px;
-      border-left: 6px solid #0072ff;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      font-size: 14px;
-    }
-
-    .checkbox {
-      margin-bottom: 15px;
-    }
-
-    button {
-      width: 100%;
-      background: #0072ff;
-      color: #fff;
-      border: none;
-      padding: 14px;
-      border-radius: 10px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #005ad1;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-    }
-
-    table, th, td {
-      border: 1px solid #ccc;
-    }
-
-    th, td {
-      padding: 10px;
-      text-align: center;
-    }
-
-    th {
-      background: #0072ff;
-      color: white;
-    }
-
-    .footer {
-      text-align: center;
-      font-size: 12px;
-      margin-top: 30px;
-      color: #777;
-    }
-  </style>
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background: #f2f6ff;
+  margin:0;
+}
+.container{
+  max-width:900px;
+  margin:auto;
+  background:white;
+  padding:25px;
+  margin-top:30px;
+  border-radius:14px;
+}
+h1,h2{
+  text-align:center;
+  color:#005ad1;
+}
+.subtitle{
+  text-align:center;
+  font-style:italic;
+  margin-bottom:25px;
+}
+.section{
+  margin-top:30px;
+  padding-top:20px;
+  border-top:1px solid #ddd;
+}
+.notice{
+  background:#eef5ff;
+  padding:12px;
+  border-left:5px solid #005ad1;
+  border-radius:8px;
+  font-size:14px;
+  margin-bottom:12px;
+}
+label{
+  font-weight:bold;
+}
+input,select{
+  width:100%;
+  padding:10px;
+  margin:6px 0 15px 0;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+button{
+  width:100%;
+  padding:12px;
+  background:#005ad1;
+  color:white;
+  border:none;
+  border-radius:10px;
+  font-size:16px;
+  cursor:pointer;
+}
+button:hover{
+  background:#003f9e;
+}
+.checkbox{
+  margin-bottom:15px;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:15px;
+}
+th,td{
+  border:1px solid #ccc;
+  padding:10px;
+  text-align:center;
+}
+th{
+  background:#005ad1;
+  color:white;
+}
+.footer{
+  text-align:center;
+  font-size:12px;
+  margin-top:30px;
+  color:#777;
+}
+</style>
 </head>
 
 <body>
 
 <div class="container">
 
-  <!-- BIENVENIDA -->
-  <h1>BIENVENIDO A TIKO</h1>
-  <p class="subtitle">"Conexión Peluda"</p>
+<h1>BIENVENIDO A TIKO</h1>
+<p class="subtitle">"Conexión Peluda"</p>
 
-  <!-- MISIÓN Y VISIÓN -->
-  <div class="section">
-    <h2>Misión</h2>
-    <p>
-      Facilitar la identificación y protección de las mascotas mediante tecnología QR,
-      permitiendo el acceso rápido y claro a información esencial para su cuidado,
-      seguridad y pronta localización de sus dueños.
-    </p>
+<!-- DATOS DE LA MASCOTA -->
+<div class="section">
+<h2>Datos de la mascota</h2>
 
-    <h2>Visión</h2>
-    <p>
-      Convertir a TIKO en una herramienta confiable y accesible que ayude a reducir
-      la pérdida de mascotas y mejore la atención veterinaria a través de información
-      digital clara, segura y siempre disponible.
-    </p>
-  </div>
+<div class="notice">
+✔️ Usa solo letras para el nombre.<br>
+✔️ El peso debe ir en kilogramos.<br>
+✔️ La edad se expresa en años.
+</div>
 
-  <!-- REGISTRO DE DUEÑO -->
-  <div class="section">
-    <h2>Registro del dueño</h2>
+<div class="checkbox">
+<input type="checkbox"> Confirmo que los datos son correctos
+</div>
 
-    <div class="notice">
-      ✋ Instrucciones:<br>
-      - Escribe tu nombre completo tal como aparece en documentos oficiales.<br>
-      - No uses números ni signos especiales.<br>
-      - Ejemplo correcto: Juan Pérez López
-    </div>
+<label>Nombre de la mascota</label>
+<input type="text" placeholder="Ejemplo: Luna">
 
-    <div class="checkbox">
-      <input type="checkbox" id="checkOwner">
-      <label for="checkOwner">Leí con atención la instrucción</label>
-    </div>
+<label>Peso (kg)</label>
+<input type="number">
 
-    <label>Nombre completo del dueño</label>
-    <input type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" placeholder="Nombre completo">
+<label>Edad (años)</label>
+<input type="number">
+</div>
 
-    <label>Contraseña</label>
-    <input type="password" placeholder="Crea una contraseña segura">
-  </div>
+<!-- VACUNAS -->
+<div class="section">
+<h2>Agregar vacuna</h2>
 
-  <!-- DATOS DE LA MASCOTA -->
-  <div class="section">
-    <h2>Datos de la mascota</h2>
+<div class="notice">
+Selecciona la vacuna aplicada y registra la información básica.
+Cada vacuna agregada aparecerá en la cartilla digital.
+</div>
 
-    <div class="notice">
-      🐶 Instrucciones:<br>
-      - Usa solo letras para el nombre de la mascota.<br>
-      - El peso debe estar en kilogramos.<br>
-      - La edad se registra en años.
-    </div>
+<div class="checkbox">
+<input type="checkbox"> Leí con atención cómo registrar una vacuna
+</div>
 
-    <div class="checkbox">
-      <input type="checkbox" id="checkPet">
-      <label for="checkPet">Leí con atención la instrucción</label>
-    </div>
+<label>Vacuna</label>
+<select id="vacuna">
+  <option>Antirrábica</option>
+  <option>Parvovirus</option>
+  <option>Moquillo</option>
+  <option>Hepatitis</option>
+  <option>Leptospirosis</option>
+</select>
 
-    <label>Nombre de la mascota</label>
-    <input type="text" placeholder="Ejemplo: Max">
+<label>Fecha de aplicación</label>
+<input type="date" id="fecha">
 
-    <label>Peso (kg)</label>
-    <input type="number" placeholder="Ejemplo: 12">
+<label>¿Requiere más de una dosis?</label>
+<select id="dosis">
+  <option>No</option>
+  <option>Sí</option>
+</select>
 
-    <label>Edad (años)</label>
-    <input type="number" placeholder="Ejemplo: 4">
-  </div>
+<button onclick="agregarVacuna()">Agregar vacuna</button>
 
-  <!-- VACUNAS -->
-  <div class="section">
-    <h2>Registro de vacunas</h2>
+<!-- TABLA -->
+<table id="tablaVacunas">
+<thead>
+<tr>
+<th>Vacuna</th>
+<th>Fecha</th>
+<th>Dosis múltiple</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
 
-    <div class="notice">
-      💉 Instrucciones:<br>
-      - Selecciona la vacuna aplicada.<br>
-      - Indica cuándo se aplicó.<br>
-      - Señala si requiere más de una dosis.
-    </div>
+<button style="margin-top:15px;">Descargar cartilla digital</button>
+</div>
 
-    <div class="checkbox">
-      <input type="checkbox" id="checkVaccine">
-      <label for="checkVaccine">Leí con atención la instrucción</label>
-    </div>
-
-    <label>Vacuna</label>
-    <select>
-      <option>Antirrábica</option>
-      <option>Parvovirus</option>
-      <option>Moquillo</option>
-      <option>Hepatitis</option>
-      <option>Leptospirosis</option>
-    </select>
-
-    <label>Fecha de aplicación</label>
-    <input type="date">
-
-    <label>¿Tiene más de una dosis?</label>
-    <select>
-      <option>No</option>
-      <option>Sí</option>
-    </select>
-
-    <button>Agregar vacuna</button>
-
-    <!-- TABLA -->
-    <table>
-      <tr>
-        <th>Vacuna</th>
-        <th>Fecha</th>
-        <th>Dosis múltiple</th>
-      </tr>
-      <tr>
-        <td>Antirrábica</td>
-        <td>2025-01-10</td>
-        <td>No</td>
-      </tr>
-    </table>
-
-    <button style="margin-top:15px;">Descargar cartilla digital</button>
-  </div>
-
-  <div class="footer">
-    TIKO © Prueba piloto · Información demostrativa
-  </div>
+<div class="footer">
+TIKO · Prueba Piloto 4.0 · Datos demostrativos
+</div>
 
 </div>
+
+<script>
+function agregarVacuna(){
+  const vacuna = document.getElementById("vacuna").value;
+  const fecha = document.getElementById("fecha").value;
+  const dosis = document.getElementById("dosis").value;
+
+  if(fecha === ""){
+    alert("Por favor selecciona la fecha de aplicación");
+    return;
+  }
+
+  const tabla = document.getElementById("tablaVacunas").querySelector("tbody");
+  const fila = tabla.insertRow();
+
+  fila.insertCell(0).innerText = vacuna;
+  fila.insertCell(1).innerText = fecha;
+  fila.insertCell(2).innerText = dosis;
+}
+</script>
 
 </body>
 </html>
