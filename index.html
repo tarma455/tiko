@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>TIKO | Conexión Peluda</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #4CAF50, #81D4FA);
+      color: #333;
+    }
+
+    .screen {
+      display: none;
+      max-width: 700px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      margin-top: 40px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #2E7D32;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 10px;
+      background: #4CAF50;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button.secondary {
+      background: #81D4FA;
+      color: #333;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .table input {
+      margin-bottom: 10px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #fff;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- PANTALLA 1: BIENVENIDA -->
+<div class="screen active" id="welcome">
+  <h1>BIENVENIDO A TIKO</h1>
+  <p style="text-align:center;">“Conexión Peluda”</p>
+
+  <button onclick="goTo('selectUser')">Continuar</button>
+</div>
+
+<!-- PANTALLA 2: TIPO DE USUARIO -->
+<div class="screen" id="selectUser">
+  <h2>¿Quién eres?</h2>
+
+  <button onclick="goTo('registerOwner')">Soy nuevo usuario (dueño)</button>
+  <button class="secondary" onclick="goTo('contactOwner')">Encontré una mascota</button>
+</div>
+
+<!-- PANTALLA 3: REGISTRO DE DUEÑO -->
+<div class="screen" id="registerOwner">
+  <h2>Registro de Dueño</h2>
+
+  <input type="text" placeholder="Nombre completo">
+  <input type="password" placeholder="Contraseña">
+
+  <button onclick="goTo('petData')">Continuar</button>
+</div>
+
+<!-- PANTALLA 4: DATOS DE LA MASCOTA -->
+<div class="screen" id="petData">
+  <h2>Datos de la Mascota</h2>
+
+  <input type="text" placeholder="Nombre de la mascota">
+  <input type="number" placeholder="Edad (años)">
+  <input type="text" placeholder="Peso (kg)">
+
+  <h3>Información médica</h3>
+
+  <div class="table">
+    <input type="text" placeholder="Padecimientos">
+    <input type="text" placeholder="Alergias">
+    <input type="text" placeholder="Vacunas">
+  </div>
+
+  <button onclick="goTo('finish')">Guardar información</button>
+</div>
+
+<!-- PANTALLA 5: FINAL -->
+<div class="screen" id="finish">
+  <h2>Registro completado</h2>
+  <p>
+    Este QR ahora representa a <strong>tu mascota</strong>.  
+    Cuando alguien lo escanee, podrá contactarte y ver
+    información importante para ayudarla.
+  </p>
+</div>
+
+<!-- PANTALLA 6: PERSONA QUE ENCUENTRA LA MASCOTA -->
+<div class="screen" id="contactOwner">
+  <h2>🐾 Mascota encontrada</h2>
+
+  <p><strong>Nombre:</strong> Rocky</p>
+  <p><strong>Dueño:</strong> Guillermo</p>
+  <p><strong>Teléfono:</strong> 55 1234 5678</p>
+
+  <button>Llamar al dueño</button>
+</div>
+
+<footer>
+  🐶 TIKO — Tecnología con corazón para mascotas
+</footer>
+
+<script>
+  function goTo(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+</script>
+
+</body>
+</html>
