@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>TIKO | Prueba Piloto 4.3</title>
+<title>TIKO | Prueba Piloto 4.4</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -19,21 +19,17 @@ body{
   margin-top:30px;
   border-radius:16px;
 }
-h1,h2,h3{
+h1,h2{
   text-align:center;
   color:#005ad1;
 }
 .subtitle{
   text-align:center;
   font-style:italic;
-  margin-bottom:20px;
 }
-.section{
-  display:none;
-}
-.section.active{
-  display:block;
-}
+.section{ display:none; }
+.section.active{ display:block; }
+
 .notice{
   background:#eef5ff;
   padding:14px;
@@ -42,16 +38,15 @@ h1,h2,h3{
   font-size:14px;
   margin-bottom:14px;
 }
-label{
-  font-weight:bold;
-}
-input,select{
+
+input{
   width:100%;
   padding:10px;
   margin:6px 0 15px 0;
   border-radius:8px;
   border:1px solid #ccc;
 }
+
 button{
   width:100%;
   padding:13px;
@@ -61,13 +56,19 @@ button{
   border-radius:12px;
   font-size:16px;
   cursor:pointer;
+  margin-top:10px;
 }
-button:hover{
-  background:#003f9e;
+button.secondary{
+  background:#6c757d;
 }
-.checkbox{
-  margin-bottom:15px;
+button.danger{
+  background:#dc3545;
 }
+button.small{
+  font-size:14px;
+  padding:8px;
+}
+
 table{
   width:100%;
   border-collapse:collapse;
@@ -75,26 +76,25 @@ table{
 }
 th,td{
   border:1px solid #ccc;
-  padding:10px;
+  padding:8px;
   text-align:center;
 }
 th{
   background:#005ad1;
   color:white;
 }
+
+.animals{
+  text-align:center;
+  font-size:26px;
+  margin-bottom:10px;
+}
+
 .footer{
   text-align:center;
   font-size:12px;
   margin-top:30px;
   color:#777;
-}
-.hidden{
-  display:none;
-}
-.animals{
-  text-align:center;
-  font-size:26px;
-  margin-bottom:10px;
 }
 </style>
 </head>
@@ -103,45 +103,53 @@ th{
 
 <div class="container">
 
+<!-- BLOQUE 0: SELECCIÓN -->
+<div class="section active" id="step0">
+  <div class="animals">🐶 🐾 🐱</div>
+  <h1>TIKO</h1>
+  <p class="subtitle">Conexión Peluda</p>
+
+  <button onclick="nextStep(1)">Soy el dueño</button>
+  <button class="secondary" onclick="mostrarEncontrado()">Encontré a tu mascota</button>
+</div>
+
+<!-- BLOQUE ENCONTRADO -->
+<div class="section" id="found">
+  <h2>Mascota encontrada</h2>
+  <div class="notice">
+    Has escaneado el código de una mascota.
+    Comunícate con el dueño:
+    <br><br>
+    📞 <strong>55 1234 5678</strong>
+  </div>
+</div>
+
 <!-- BLOQUE 1: BIENVENIDA -->
-<div class="section active" id="step1">
-  <div class="animals">🐶 🐱 🐾</div>
-  <h1>BIENVENIDO A TIKO</h1>
-  <p class="subtitle">"Conexión Peluda"</p>
+<div class="section" id="step1">
+  <h2>Bienvenido a TIKO</h2>
 
   <div class="notice">
     <strong>Misión:</strong><br>
-    Facilitar la identificación y protección de las mascotas mediante tecnología QR,
-    permitiendo el acceso rápido a información clave para su cuidado y pronta localización.
+    Facilitar la protección de mascotas mediante cartillas digitales accesibles.
   </div>
 
   <div class="notice">
     <strong>Visión:</strong><br>
-    Convertir a TIKO en una herramienta confiable que reduzca la pérdida de mascotas y
-    mejore la atención veterinaria a través de una cartilla digital clara y accesible.
-  </div>
-
-  <div class="notice">
-    Esta es una demostración de la cartilla digital TIKO.
-    A continuación se muestra un flujo simulado de registro.
+    Reducir la pérdida de mascotas mediante tecnología confiable.
   </div>
 
   <button onclick="nextStep(2)">Continuar</button>
 </div>
 
-<!-- BLOQUE 2: USUARIO -->
+<!-- BLOQUE 2: DUEÑO -->
 <div class="section" id="step2">
-  <h2>Registro del dueño</h2>
-
-  <div class="notice">
-    Datos simulados para esta prueba piloto.
-  </div>
+  <h2>Datos del dueño</h2>
 
   <label>Nombre completo</label>
-  <input type="text" value="Guillermo Alfonso Cortes Soto">
+  <input value="Guillermo Alfonso Cortes Soto">
 
-  <label>Contraseña</label>
-  <input type="password" value="********">
+  <label>Número de celular</label>
+  <input value="55 1234 5678">
 
   <button onclick="nextStep(3)">Continuar</button>
 </div>
@@ -149,52 +157,51 @@ th{
 <!-- BLOQUE 3: MASCOTA -->
 <div class="section" id="step3">
   <h2>Datos de la mascota</h2>
-
   <div class="animals">🐕‍🦺</div>
 
   <label>Nombre</label>
-  <input type="text" value="Toby">
+  <input value="Toby">
 
   <label>Peso (kg)</label>
-  <input type="number" value="14">
+  <input value="14">
 
   <label>Edad (años)</label>
-  <input type="number" value="4">
+  <input value="4">
 
   <button onclick="nextStep(4)">Continuar</button>
 </div>
 
-<!-- BLOQUE 4: VACUNAS -->
+<!-- BLOQUE 4: CARTILLA -->
 <div class="section" id="step4">
   <h2>Cartilla digital</h2>
 
-  <div class="notice">
-    Ejemplo de cartilla con vacunas previamente registradas.
-  </div>
-
-  <table>
+  <table id="tablaVacunas">
     <thead>
       <tr>
         <th>Vacuna</th>
         <th>Fecha</th>
-        <th>Dosis múltiple</th>
+        <th>Acción</th>
       </tr>
     </thead>
     <tbody>
-      <tr><td>Antirrábica</td><td>2024-02-15</td><td>No</td></tr>
-      <tr><td>Parvovirus</td><td>2024-03-01</td><td>Sí</td></tr>
-      <tr><td>Moquillo</td><td>2024-03-20</td><td>Sí</td></tr>
-      <tr><td>Leptospirosis</td><td>2024-04-05</td><td>No</td></tr>
+      <tr><td>Antirrábica</td><td>2024-02-15</td><td><button class="danger small" onclick="eliminarFila(this)">Eliminar</button></td></tr>
+      <tr><td>Parvovirus</td><td>2024-03-01</td><td><button class="danger small" onclick="eliminarFila(this)">Eliminar</button></td></tr>
+      <tr><td>Moquillo</td><td>2024-03-20</td><td><button class="danger small" onclick="eliminarFila(this)">Eliminar</button></td></tr>
+      <tr><td>Leptospirosis</td><td>2024-04-05</td><td><button class="danger small" onclick="eliminarFila(this)">Eliminar</button></td></tr>
     </tbody>
   </table>
 
-  <button style="margin-top:18px;" onclick="descargarCartilla()">
-    Descargar cartilla digital
-  </button>
+  <h3>Agregar vacuna</h3>
+  <input id="vacunaNombre" placeholder="Nombre de la vacuna">
+  <input id="vacunaFecha" type="date">
+
+  <button onclick="agregarVacuna()">Agregar vacuna</button>
+
+  <button onclick="descargarCartilla()">Descargar cartilla</button>
 </div>
 
 <div class="footer">
-🐾 TIKO · Prueba Piloto 4.3 · Cartilla demostrativa
+🐾 TIKO · Prueba Piloto 4.4
 </div>
 
 </div>
@@ -202,7 +209,27 @@ th{
 <script>
 function nextStep(step){
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.getElementById('step' + step).classList.add('active');
+  document.getElementById('step'+step).classList.add('active');
+}
+
+function mostrarEncontrado(){
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('found').classList.add('active');
+}
+
+function eliminarFila(btn){
+  btn.parentNode.parentNode.remove();
+}
+
+function agregarVacuna(){
+  let nombre = document.getElementById('vacunaNombre').value;
+  let fecha = document.getElementById('vacunaFecha').value;
+  if(nombre && fecha){
+    let tabla = document.getElementById('tablaVacunas').getElementsByTagName('tbody')[0];
+    let fila = tabla.insertRow();
+    fila.innerHTML = `<td>${nombre}</td><td>${fecha}</td>
+    <td><button class="danger small" onclick="eliminarFila(this)">Eliminar</button></td>`;
+  }
 }
 
 function descargarCartilla(){
@@ -210,8 +237,8 @@ function descargarCartilla(){
     "Descarga simulada\n\n" +
     "Dueño: Guillermo Alfonso Cortes Soto\n" +
     "Mascota: Toby\n" +
-    "Vacunas: 4 registradas\n\n" +
-    "En la versión final se generará un PDF oficial."
+    "Cartilla editable\n\n" +
+    "En versión final se generará PDF."
   );
 }
 </script>
